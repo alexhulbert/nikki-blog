@@ -2,3 +2,8 @@
   padding: 3rem 0;
   background: var(--lightGrey);
 }
+
+.legal {
+  font-size: 0.75em;
+  color: black;
+}
