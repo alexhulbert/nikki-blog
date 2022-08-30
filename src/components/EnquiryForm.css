@@ -25,7 +25,8 @@
   box-sizing: border-box;
   display: block;
   margin: 0;
-  border: 1px solid #bababa;
+  border: none;
+  box-shadow: rgb(0 0 0 / 10%) 0px 4px 5px;
   padding: 1.5rem 2rem;
   border-radius: var(--borderRadius);
   line-height: 1.25em;

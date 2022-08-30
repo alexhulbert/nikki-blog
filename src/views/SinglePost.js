@@ -8,17 +8,9 @@ import { dateFormatted } from '../util/date'
 import './SinglePost.css'
 
 export default ({ fields, nextPostURL, prevPostURL }) => {
-  const { title, date, postFeaturedImage, body, categories = [] } = fields
+  const { title, date, body, categories = [] } = fields
   return (
     <article className="SinglePost section light">
-      {postFeaturedImage && (
-        <BackgroundImage
-          className="SinglePost--BackgroundImage"
-          src={postFeaturedImage}
-          alt={title}
-        />
-      )}
-
       <div className="container skinny">
         <Link className="SinglePost--BackButton" to="/blog/">
           <ChevronLeft /> BACK

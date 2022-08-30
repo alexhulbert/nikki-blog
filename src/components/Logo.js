@@ -6,7 +6,7 @@ export default ({ inverted }) => (
   <div
     className='Logo'
     style={{
-      backgroundImage: 'url(/images/logo.svg)'
+      backgroundImage: 'url("https://cdn-icons-png.flaticon.com/256/676/676526.png")'
     }}
   />
 )

@@ -11,7 +11,7 @@ class Form extends React.Component {
     name: 'Simple Form Ajax',
     subject: '', // optional subject of the notification email
     action: '',
-    successMessage: 'Thanks for your enquiry, we will get back to you soon',
+    successMessage: 'Thanks for your message, we will get back to you soon',
     errorMessage:
       'There is a problem, your message has not been sent, please try contacting us via email'
   }
@@ -87,21 +87,6 @@ class Form extends React.Component {
             required
           />
         </label>
-        <label className='EnquiryForm--Label has-arrow'>
-          <select
-            className='EnquiryForm--Input EnquiryForm--Select'
-            name='type'
-            defaultValue='Type of Enquiry'
-            required
-          >
-            <option disabled hidden>
-              Type of Enquiry
-            </option>
-            <option>Need to know more</option>
-            <option>Found a bug</option>
-            <option>Want to say hello</option>
-          </select>
-        </label>
         <label className='EnquiryForm--Label'>
           <textarea
             className='EnquiryForm--Input EnquiryForm--Textarea'
@@ -117,7 +102,7 @@ class Form extends React.Component {
         <input
           className='Button EnquiryForm--SubmitButton'
           type='submit'
-          value='Enquire'
+          value='Send'
           disabled={this.state.disabled}
         />
       </form>
