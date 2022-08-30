@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { ChevronLeft } from 'react-feather'
 
 import Content from '../components/Content'
-import BackgroundImage from '../components/BackgroundImage'
 import { dateFormatted } from '../util/date'
 import './SinglePost.css'
 
