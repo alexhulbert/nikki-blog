@@ -15,5 +15,16 @@
     "webpack": "^4.40.2",
     "webpack-cli": "^3.3.8"
   },
-  "dependencies": {}
+  "peerDependencies": {
+    "@emotion/core": "^10.0.35",
+    "codemirror": "^5.46.0",
+    "lodash": "^4.17.11",
+    "netlify-cms-ui-default": "^2.12.1",
+    "react": "^16.8.4 || ^17.0.0"
+  },
+  "dependencies": {
+    "react-codemirror2": "^7.0.0",
+    "react-select": "^4.0.0",
+    "react-router-dom": "^5.0.1"
+  }
 }

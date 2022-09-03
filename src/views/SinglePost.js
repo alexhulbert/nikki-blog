@@ -1,12 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link as ImportLink } from 'react-router-dom'
 import { ChevronLeft } from 'react-feather'
 
 import Content from '../components/Content'
 import { dateFormatted } from '../util/date'
 import './SinglePost.css'
 
-export default ({ fields, nextPostURL, prevPostURL, hideNextPrev }) => {
+export default ({ fields, nextPostURL, prevPostURL, CMSLink }) => {
+  const Link = CMSLink || ImportLink
   const { title, date, body, categories = [] } = fields
   return (
     <article className="SinglePost section light">
@@ -36,7 +37,7 @@ export default ({ fields, nextPostURL, prevPostURL, hideNextPrev }) => {
           </div>
 
           <div className="SinglePost--Pagination">
-            {!hideNextPrev && prevPostURL && (
+            {prevPostURL && (
               <Link
                 className="SinglePost--Pagination--Link prev"
                 to={prevPostURL}
@@ -44,7 +45,7 @@ export default ({ fields, nextPostURL, prevPostURL, hideNextPrev }) => {
                 Previous Post
               </Link>
             )}
-            {!hideNextPrev && nextPostURL && (
+            {nextPostURL && (
               <Link
                 className="SinglePost--Pagination--Link next"
                 to={nextPostURL}
