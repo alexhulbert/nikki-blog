@@ -6,12 +6,12 @@ import Content from '../components/Content'
 import { dateFormatted } from '../util/date'
 import './SinglePost.css'
 
-export default ({ fields, nextPostURL, prevPostURL }) => {
+export default ({ fields, nextPostURL, prevPostURL, hideRouter }) => {
   const { title, date, body, categories = [] } = fields
   return (
     <article className="SinglePost section light">
       <div className="container skinny">
-        {false && (
+        {!hideRouter && (
           <Link className="SinglePost--BackButton" to="/blog/">
             <ChevronLeft /> BACK
           </Link>
@@ -37,7 +37,7 @@ export default ({ fields, nextPostURL, prevPostURL }) => {
             <Content source={body} />
           </div>
           <div className="SinglePost--Pagination">
-            {false && prevPostURL && (
+            {!hideRouter && prevPostURL && (
               <Link
                 className="SinglePost--Pagination--Link prev"
                 to={prevPostURL}
@@ -45,7 +45,7 @@ export default ({ fields, nextPostURL, prevPostURL }) => {
                 Previous Post
               </Link>
             )}
-            {false && nextPostURL && (
+            {!hideRouter && nextPostURL && (
               <Link
                 className="SinglePost--Pagination--Link next"
                 to={nextPostURL}
