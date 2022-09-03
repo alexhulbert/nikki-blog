@@ -6,7 +6,7 @@ import Content from '../components/Content'
 import { dateFormatted } from '../util/date'
 import './SinglePost.css'
 
-export default ({ fields, nextPostURL, prevPostURL }) => {
+export default ({ fields, nextPostURL, prevPostURL, hideNextPrev }) => {
   const { title, date, body, categories = [] } = fields
   return (
     <article className="SinglePost section light">
@@ -36,7 +36,7 @@ export default ({ fields, nextPostURL, prevPostURL }) => {
           </div>
 
           <div className="SinglePost--Pagination">
-            {prevPostURL && (
+            {!hideNextPrev && prevPostURL && (
               <Link
                 className="SinglePost--Pagination--Link prev"
                 to={prevPostURL}
@@ -44,7 +44,7 @@ export default ({ fields, nextPostURL, prevPostURL }) => {
                 Previous Post
               </Link>
             )}
-            {nextPostURL && (
+            {!hideNextPrev && nextPostURL && (
               <Link
                 className="SinglePost--Pagination--Link next"
                 to={nextPostURL}
