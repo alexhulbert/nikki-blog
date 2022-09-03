@@ -34,7 +34,7 @@ CMS.registerPreviewTemplate('contact-page', ({ entry }) => (
   <Contact fields={entry.toJS().data} siteTitle={globalSettings.siteTitle} />
 ))
 CMS.registerPreviewTemplate('blog-page', ({ entry }) => (
-  <Blog fields={entry.toJS().data} posts={posts} />
+  <Blog fields={entry.toJS().data} posts={posts} hideRouter={true} />
 ))
 CMS.registerPreviewTemplate('posts', arg => (
   <SinglePost fields={arg.entry.toJS().data} hideRouter={true} />
