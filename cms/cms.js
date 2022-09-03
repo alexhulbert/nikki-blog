@@ -36,10 +36,9 @@ CMS.registerPreviewTemplate('contact-page', ({ entry }) => (
 CMS.registerPreviewTemplate('blog-page', ({ entry }) => (
   <Blog fields={entry.toJS().data} posts={posts} />
 ))
-CMS.registerPreviewTemplate('posts', arg => {
-  console.log("ARG!!!", arg)
-  return (<SinglePost fields={{ ...arg.entry.toJS().data, hideRouter: true }} />)
-})
+CMS.registerPreviewTemplate('posts', arg => (
+  <SinglePost fields={arg.entry.toJS().data} hideRouter={true} />
+))
 
 // Return to home when user logging out
 window.netlifyIdentity.on('logout', function () {
