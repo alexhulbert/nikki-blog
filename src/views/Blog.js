@@ -26,10 +26,10 @@ export default ({
       />
 
       {!!postCategories.length && (
-        <PostCategoriesNav categories={postCategories} hideRouter=hideRouter />
+        <PostCategoriesNav categories={postCategories} hideRouter={hideRouter} />
       )}
 
-      {!!posts.length && <PostSection posts={posts} hideRouter=hideRouter />}
+      {!!posts.length && <PostSection posts={posts} hideRouter={hideRouter} />}
     </main>
   )
 }
