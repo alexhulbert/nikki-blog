@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { ChevronLeft } from 'react-feather'
 
 import Content from '../components/Content'
@@ -10,9 +11,11 @@ export default ({ fields, nextPostURL, prevPostURL }) => {
   return (
     <article className="SinglePost section light">
       <div className="container skinny">
-        <Link className="SinglePost--BackButton" to="/blog/">
-          <ChevronLeft /> BACK
-        </Link>
+        {false && (
+          <Link className="SinglePost--BackButton" to="/blog/">
+            <ChevronLeft /> BACK
+          </Link>
+        )}
         <div className="SinglePost--Content relative">
           <div className="SinglePost--Meta">
             {!!categories.length &&
@@ -32,6 +35,24 @@ export default ({ fields, nextPostURL, prevPostURL }) => {
 
           <div className="SinglePost--InnerContent">
             <Content source={body} />
+          </div>
+          <div className="SinglePost--Pagination">
+            {false && prevPostURL && (
+              <Link
+                className="SinglePost--Pagination--Link prev"
+                to={prevPostURL}
+              >
+                Previous Post
+              </Link>
+            )}
+            {false && nextPostURL && (
+              <Link
+                className="SinglePost--Pagination--Link next"
+                to={nextPostURL}
+              >
+                Next Post
+              </Link>
+            )}
           </div>
         </div>
       </div>
