@@ -9,7 +9,7 @@ const PostCategoriesNav = ({ categories, hideRouter }) => (
     <div className='PostCategoriesNav'>
       {hideRouter ? <span>All</span> : <NavLink className='NavLink' exact to={`/blog/`}>All</NavLink>}
       {categories.map((category, index) => (
-        hideRouter ? (
+        hideRouter ? <span>{category.title}</span> : (
           <NavLink
             className='NavLink'
             key={category.title + index}
@@ -17,7 +17,7 @@ const PostCategoriesNav = ({ categories, hideRouter }) => (
           >
             {category.title}
           </NavLink>
-        ) : <span>{category.title}</span>
+        )
       ))}
     </div>
   </div>
