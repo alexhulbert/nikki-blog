@@ -1,13 +1,12 @@
 import React from 'react'
-import { Link as ImportLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { ChevronLeft } from 'react-feather'
 
 import Content from '../components/Content'
 import { dateFormatted } from '../util/date'
 import './SinglePost.css'
 
-export default ({ fields, nextPostURL, prevPostURL, CMSLink }) => {
-  const Link = CMSLink || ImportLink
+export default ({ fields, nextPostURL, prevPostURL }) => {
   const { title, date, body, categories = [] } = fields
   return (
     <article className="SinglePost section light">

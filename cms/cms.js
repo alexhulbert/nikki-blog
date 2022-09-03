@@ -37,7 +37,7 @@ CMS.registerPreviewTemplate('blog-page', ({ entry }) => (
   <Blog fields={entry.toJS().data} posts={posts} />
 ))
 CMS.registerPreviewTemplate('posts', ({ entry }) => (
-  <SinglePost fields={{ ...entry.toJS().data, hideNextPrev: true }} />
+  <SinglePost fields={{ ...entry.toJS().data }} />
 ))
 
 // Return to home when user logging out
