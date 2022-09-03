@@ -37,7 +37,7 @@ export default ({ fields, nextPostURL, prevPostURL, CMSLink }) => {
           </div>
 
           <div className="SinglePost--Pagination">
-            {prevPostURL && (
+            {false && prevPostURL && (
               <Link
                 className="SinglePost--Pagination--Link prev"
                 to={prevPostURL}
@@ -45,7 +45,7 @@ export default ({ fields, nextPostURL, prevPostURL, CMSLink }) => {
                 Previous Post
               </Link>
             )}
-            {nextPostURL && (
+            {false && nextPostURL && (
               <Link
                 className="SinglePost--Pagination--Link next"
                 to={nextPostURL}
