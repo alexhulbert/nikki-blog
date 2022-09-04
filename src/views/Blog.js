@@ -29,7 +29,7 @@ export default ({
         <PostCategoriesNav categories={postCategories} hideRouter={hideRouter} />
       )}
 
-      {!!posts.length && <PostSection posts={posts} hideRouter={hideRouter} />}
+      {false && !!posts.length && <PostSection posts={posts} hideRouter={hideRouter} />}
     </main>
   )
 }
