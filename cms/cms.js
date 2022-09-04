@@ -7,7 +7,7 @@ import About from '../src/views/About'
 import Contact from '../src/views/Contact'
 import Blog from '../src/views/Blog'
 import SinglePost from '../src/views/SinglePost'
-import { Widget } from './latex/src'
+import Latex from './latex/src'
 
 console.log('React version', React.version)
 
@@ -17,7 +17,8 @@ CMS.registerPreviewStyle(
 )
 CMS.registerPreviewStyle('/admin/cms.bundle.css')
 
-CMS.registerWidget(Widget.name, Widget.controlComponent, Widget.previewComponent, Widget.schema)
+const LatexWidget = Latex.Widget()
+CMS.registerWidget(LatexWidget.name, LatexWidget.controlComponent, LatexWidget.previewComponent, LatexWidget.schema)
 
 const getDocument = (collection, name) =>
   data[collection] && data[collection].filter(page => page.name === name)[0]
