@@ -18,6 +18,7 @@ CMS.registerPreviewStyle(
 CMS.registerPreviewStyle('/admin/cms.bundle.css')
 
 const LatexWidget = Latex.Widget()
+console.log("LATEX WIDGET", LatexWidget)
 CMS.registerWidget(LatexWidget.name, LatexWidget.controlComponent, LatexWidget.previewComponent, LatexWidget.schema)
 
 const getDocument = (collection, name) =>
