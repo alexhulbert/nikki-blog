@@ -11,7 +11,7 @@ export default ({
   fields,
   posts = [],
   postCategories = [],
-  hideRouter = true,
+  hideRouter = false,
   showFeatured = true
 }) => {
   const { title, subtitle, featuredImage } = fields
@@ -25,11 +25,11 @@ export default ({
         backgroundImage={featuredImage}
       />
 
-      {false && !!postCategories.length && (
+      {!!postCategories.length && (
         <PostCategoriesNav categories={postCategories} hideRouter={hideRouter} />
       )}
 
-      {false && !!posts.length && <PostSection posts={posts} hideRouter={hideRouter} />}
+      {!!posts.length && <PostSection posts={posts} hideRouter={hideRouter} />}
     </main>
   )
 }

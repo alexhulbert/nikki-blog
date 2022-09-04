@@ -25,7 +25,7 @@ class PostSection extends React.Component {
   }
 
   render () {
-    const { posts, title, showLoadMore, loadMoreTitle } = this.props
+    const { posts, title, showLoadMore, loadMoreTitle, hideRouter } = this.props
     const { limit } = this.state
 
     const visiblePosts = _sortBy(posts, ['date'])
@@ -40,7 +40,7 @@ class PostSection extends React.Component {
           {!!visiblePosts.length && (
             <div className='PostSection--Grid'>
               {visiblePosts.map((postItem, index) => (
-                <PostCard key={postItem.title + index} postItem={postItem} />
+                <PostCard key={postItem.title + index} postItem={postItem} hideRouter={hideRouter} />
               ))}
             </div>
           )}
