@@ -80,7 +80,7 @@ export default class CodeControl extends React.Component {
     settingsVisible: false,
     codeMirrorKey: uuid(),
     theme: localStorage.getItem(settingsPersistKeys['theme']) || themes[themes.length - 1],
-    lastKnownValue: this.valueIsMap() ? this.props.value?.get(this.keys.code) : this.props.value,
+    lastKnownValue: (this.valueIsMap() && this.props.value) ? this.props.value.get(this.keys.code) : this.props.value,
   };
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -235,7 +235,7 @@ export default class CodeControl extends React.Component {
     const { classNameWrapper, forID, widget, isNewEditorComponent } = this.props;
     const { lang, settingsVisible, keyMap, codeMirrorKey, theme, lastKnownValue } = this.state;
     const langInfo = this.getLanguageByName(lang);
-    const mode = langInfo?.mimeType || langInfo?.mode;
+    const mode = langInfo ? (langInfo.mimeType || langInfo.mode) : undefined;
 
     return (
       <ClassNames>
