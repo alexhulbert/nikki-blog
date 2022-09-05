@@ -22,7 +22,13 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
-          presets: ['@babel/preset-env', '@babel/preset-react'],
+          presets: [
+            '@babel/preset-env',
+            '@babel/preset-react',
+            ['@emotion/babel-preset-css-prop', {
+              autoLabel: "always",
+            }]
+          ],
           plugins: [
             '@babel/plugin-proposal-object-rest-spread',
             '@babel/plugin-proposal-class-properties',
