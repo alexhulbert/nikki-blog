@@ -9,8 +9,7 @@ import './SinglePost.css'
 
 const generator = new HtmlGenerator({ hyphenate: false })
 function compileLatex(latex) {
-  const base = location.origin + '/latex/'
-  console.log('PARSING LATEX!!!')
+  const base = window.location.origin + '/latex/'
   generator.reset();
   return parse(latex || '', { generator }).htmlDocument(base).documentElement.innerHTML;
 }
