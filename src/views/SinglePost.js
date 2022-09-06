@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { ChevronLeft } from 'react-feather'
 
 import { HtmlGenerator, parse } from 'latex.js'
-import Content from '../components/Content'
+// import Content from '../components/Content'
 import { dateFormatted } from '../util/date'
 import './SinglePost.css'
 
