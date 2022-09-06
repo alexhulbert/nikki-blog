@@ -1,25 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Map } from 'immutable';
-import { isString } from 'lodash';
 import { WidgetPreviewContainer } from 'netlify-cms-ui-default';
+import { parse, HtmlGenerator } from 'latex.js'
 
-function toValue(value, field) {
-  if (isString(value)) {
-    return value;
-  }
-  if (Map.isMap(value)) {
-    return value.get(field.getIn(['keys', 'code'], 'code'), '');
-  }
-  return '';
+const generator = new HtmlGenerator({ hyphenate: false })
+function parseLatex(latex) {
+  console.log('PARSING LATEX!!!')
+  return parse(latex, { generator }).htmlDocument().documentElement.outerHTML
 }
 
 function CodePreview(props) {
   return (
     <WidgetPreviewContainer>
-      <pre>
-        <code>{toValue(props.value, props.field)}</code>
-      </pre>
+      <div dangerouslySetInnerHTML={{ __html: "<pre>Test!</pre>" }} />
     </WidgetPreviewContainer>
   );
 }

@@ -2,9 +2,18 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { ChevronLeft } from 'react-feather'
 
+import { HtmlGenerator, parse } from 'latex.js'
 import Content from '../components/Content'
 import { dateFormatted } from '../util/date'
 import './SinglePost.css'
+
+const generator = new HtmlGenerator({ hyphenate: false })
+function compileLatex(latex) {
+  const base = location.origin + '/latex/'
+  console.log('PARSING LATEX!!!')
+  generator.reset();
+  return parse(latex || '', { generator }).htmlDocument(base).documentElement.innerHTML;
+}
 
 export default ({ fields, nextPostURL, prevPostURL, hideRouter }) => {
   const { title, date, body, categories = [] } = fields
@@ -34,7 +43,7 @@ export default ({ fields, nextPostURL, prevPostURL, hideRouter }) => {
           {title && <h1 className="SinglePost--Title">{title}</h1>}
 
           <div className="SinglePost--InnerContent">
-            <Content source={body} />
+            <div dangerouslySetInnerHTML={{ __html: compileLatex(body) }} />
           </div>
           <div className="SinglePost--Pagination">
             {!hideRouter && prevPostURL && (
