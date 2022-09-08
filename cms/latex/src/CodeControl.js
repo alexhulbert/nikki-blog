@@ -3,10 +3,26 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { ClassNames } from '@emotion/core';
 import uuid from 'uuid/v4';
+import { debounce } from 'lodash';
 import { UnControlled as ReactCodeMirror } from 'react-codemirror2';
 import 'codemirror/mode/stex/stex';
 import codeMirrorStyles from 'codemirror/lib/codemirror.css';
 import materialTheme from 'codemirror/theme/material.css';
+import { HtmlGenerator, parse } from 'latex.js'
+
+const generator = new HtmlGenerator({ hyphenate: false })
+function compileLatex(latex) {
+  const base = window.location.origin + '/latex/'
+  generator.reset();
+  try {
+    return parse(latex || '', { generator }).htmlDocument(base).documentElement.innerHTML;
+  } catch (e) {
+    console.error(e)
+    console.log(latex)
+    return "<p>syntax error</p>"
+  }
+}
+
 
 const styleString = `
   padding: 0;
@@ -25,12 +41,15 @@ export default class CodeControl extends React.Component {
   state = {
     isActive: false,
     codeMirrorKey: uuid(),
-    lastKnownValue: this.props.value,
+    lastKnownValue: this.props.value ? JSON.parse(this.props.value).latex : '',
   };
 
   handleChange(newValue) {
     this.setState({ lastKnownValue: newValue });
-    this.props.onChange(newValue);
+    this.props.onChange(JSON.stringify({
+      latex: newValue,
+      html: compileLatex(newValue)
+    }));
   }
 
   handleFocus = () => {
@@ -100,7 +119,7 @@ export default class CodeControl extends React.Component {
                 }
               }}
               value={lastKnownValue}
-              onChange={(editor, data, newValue) => this.handleChange(newValue)}
+              onChange={debounce((editor, data, newValue) => this.handleChange(newValue), 500)}
               onFocus={this.handleFocus}
               onBlur={this.handleBlur}
             />
