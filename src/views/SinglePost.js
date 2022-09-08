@@ -10,9 +10,9 @@ import './SinglePost.css'
 const hash = s => s.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);
 const generator = new HtmlGenerator({ hyphenate: false })
 function compileLatex(date, latex) {
-  const localHash = hash(latex)
-  const storedHash = window.localStorage.getItem(`latex-${date}-hash`)
-  if (localHash == storedHash) {
+  const localHash = hash(latex).toString()
+  const storedHash = window.localStorage.getItem(`latex-${date}-hash`).toString()
+  if (localHash === storedHash) {
     console.log('Using cached html')
     return window.localStorage.getItem(`latex-${date}-html`)
   } else {
