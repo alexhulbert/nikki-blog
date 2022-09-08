@@ -26,8 +26,7 @@ function compileLatex(date, latex) {
       return html
     } catch (e) {
       console.error(e)
-      console.log(latex)
-      return "<p>syntax error</p>"
+      return `<p>Syntax Error ${e.location.start.line}:${e.location.start.column}-${e.location.end.line}:${e.location.end.column}:</p><br><p>${e.message}</p>`
     }
   }
 }
