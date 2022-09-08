@@ -3,8 +3,34 @@ import { Link } from 'react-router-dom'
 import { ChevronLeft } from 'react-feather'
 
 // import Content from '../components/Content'
+import { HtmlGenerator, parse } from 'latex.js'
 import { dateFormatted } from '../util/date'
 import './SinglePost.css'
+
+const hash = s => s.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);
+const generator = new HtmlGenerator({ hyphenate: false })
+function compileLatex(date, latex) {
+  const localHash = hash(latex)
+  const storedHash = window.localStorage.getItem(`latex-${date}-hash`)
+  if (localHash == storedHash) {
+    console.log('Using cached html')
+    return window.localStorage.getItem(`latex-${date}-html`)
+  } else {
+    console.log('Not using cached html')
+    const base = window.location.origin + '/latex/'
+    generator.reset();
+    try {
+      const html = parse(latex || '', { generator }).htmlDocument(base).documentElement.innerHTML;
+      window.localStorage.setItem(`latex-${date}-hash`, localHash)
+      window.localStorage.setItem(`latex-${date}-html`, html)
+      return html
+    } catch (e) {
+      console.error(e)
+      console.log(latex)
+      return "<p>syntax error</p>"
+    }
+  }
+}
 
 export default ({ fields, nextPostURL, prevPostURL, hideRouter }) => {
   const { title, date, body, categories = [] } = fields
@@ -34,7 +60,7 @@ export default ({ fields, nextPostURL, prevPostURL, hideRouter }) => {
           {title && <h1 className="SinglePost--Title">{title}</h1>}
 
           <div className="SinglePost--InnerContent">
-            <div dangerouslySetInnerHTML={{ __html: body ? JSON.parse(body).html : '' }} />
+            <div dangerouslySetInnerHTML={{ __html: body ? compileLatex(date, body) : '' }} />
           </div>
           <div className="SinglePost--Pagination">
             {!hideRouter && prevPostURL && (

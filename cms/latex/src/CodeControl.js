@@ -8,21 +8,6 @@ import { UnControlled as ReactCodeMirror } from 'react-codemirror2';
 import 'codemirror/mode/stex/stex';
 import codeMirrorStyles from 'codemirror/lib/codemirror.css';
 import materialTheme from 'codemirror/theme/material.css';
-import { HtmlGenerator, parse } from 'latex.js'
-
-const generator = new HtmlGenerator({ hyphenate: false })
-function compileLatex(latex) {
-  const base = window.location.origin + '/latex/'
-  generator.reset();
-  try {
-    return parse(latex || '', { generator }).htmlDocument(base).documentElement.innerHTML;
-  } catch (e) {
-    console.error(e)
-    console.log(latex)
-    return "<p>syntax error</p>"
-  }
-}
-
 
 const styleString = `
   padding: 0;
@@ -41,21 +26,12 @@ export default class CodeControl extends React.Component {
   state = {
     isActive: false,
     codeMirrorKey: uuid(),
-    lastKnownValue: this.props.value ? JSON.parse(this.props.value).latex : '',
+    lastKnownValue: this.props.value || '',
   };
 
   handleChange(newValue) {
     this.setState({ lastKnownValue: newValue });
-    console.log('Compiling Latex')
-    let html = ''
-    try {
-      html = compileLatex(newValue)
-    } catch (e) {
-      console.error('Syntax Error: ' + e)
-    }
-    this.props.onChange(JSON.stringify({
-      latex: newValue, html
-    }));
+    this.props.onChange(newValue);
   }
 
   handleFocus = () => {
