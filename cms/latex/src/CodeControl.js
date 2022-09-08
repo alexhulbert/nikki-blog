@@ -46,9 +46,15 @@ export default class CodeControl extends React.Component {
 
   handleChange(newValue) {
     this.setState({ lastKnownValue: newValue });
+    console.log('Compiling Latex')
+    let html = ''
+    try {
+      html = compileLatex(newValue)
+    } catch (e) {
+      console.error('Syntax Error: ' + e)
+    }
     this.props.onChange(JSON.stringify({
-      latex: newValue,
-      html: compileLatex(newValue)
+      latex: newValue, html
     }));
   }
 
